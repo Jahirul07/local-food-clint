@@ -1,25 +1,30 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const FoodDetails = () => {
-    const food = useLoaderData()
-    console.log(food)
+  const food = useLoaderData();
+  const { img, price, description, name, rating } = food;
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero w-4/5 mx-auto my-6">
       <div className="hero-content flex-col lg:flex-row">
-        <img
-          src="https://placeimg.com/260/400/arch"
-          className="max-w-sm rounded-lg shadow-2xl"
-          alt=""
-        />
-        <div>
-          <h1 className="text-5xl font-bold">Box Office News!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+        <img src={img} className="max-w-sm rounded-lg shadow-2xl" alt="" />
+        <div className="ml-6">
+          <h1 className="text-5xl font-bold">{name}</h1>
+          <p className="py-6">{description}</p>
+          <div className="flex justify-around">
+          <p className="text-xl lg:text-3xl text-orange-800 font-semibold">
+            Price: ${price}
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <p className="text-xl text-sky-700">Rating: {rating}</p>
+          </div>
+          <div className="flex flex-row-reverse">
+            <button className="btn btn-primary ml-6">
+              <Link to='/reviewsubmit'>Review Submit</Link>
+            </button>
+            <button className="btn btn-primary">
+              <Link to='/myreview'>View All Your Review</Link>
+            </button>
+          </div>
         </div>
       </div>
     </div>
