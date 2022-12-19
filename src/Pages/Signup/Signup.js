@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
-  const {createUser} = useContext(AuthContext)
+  const { createUser, signInWithGoogle } = useContext(AuthContext);
   const handleSignup = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -13,13 +13,21 @@ const Signup = () => {
     console.log(name, email, password);
 
     createUser(email, password)
-    .then(result => {
-      const user = result.user;
-      console.log(user)
-      form.reset()
-    })
-    .catch(err => console.log(err));
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((err) => console.log(err));
+  };
 
+  const handleGoogleSignUp = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -68,9 +76,20 @@ const Signup = () => {
               </button>
             </div>
             <p className="text-center">
-              You have an account?<Link to="/login" className="text-indigo-900">Login</Link>
+              You have an account?
+              <Link to="/login" className="text-indigo-900">
+                Login
+              </Link>
             </p>
-            <h3 className="text-center font-3xl">SignUp with <Link className="text-indigo-900 font-semibold">Google</Link></h3>
+            <h3 className="text-center font-3xl">
+              SignUp with{" "}
+              <Link
+                onClick={handleGoogleSignUp}
+                className="text-indigo-900 font-semibold"
+              >
+                Google
+              </Link>
+            </h3>
           </form>
         </div>
       </div>

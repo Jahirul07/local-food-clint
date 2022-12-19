@@ -3,8 +3,15 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const {user} = useContext(AuthContext)
-  console.log('context', user)
+  const {user, logOut} = useContext(AuthContext);
+
+  const handleSignOut = () =>{
+    logOut()
+    .then(() => {})
+    .then(err => console.error(err))
+  }
+
+
     const menuItem = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to=''>Service All</Link></li>
@@ -47,23 +54,33 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
-      <div className="dropdown dropdown-end">
-      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img src="https://placeimg.com/80/80/people" alt=""/>
+        {
+          user?.email ?
+          <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              {
+                user?.email ?
+                user?.photoURL
+                :
+                <img src="https://placeimg.com/80/80/people" alt=""/>
+              }
+            </div>
+          </label>
+          <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+            <li>
+              <Link className="justify-between">
+                {user?.email && user.email}
+              </Link>
+            </li>
+            <li><Link>Settings</Link></li>
+            <li><Link onClick={handleSignOut}>Logout</Link></li>
+          </ul>
         </div>
-      </label>
-      <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-        <li>
-          <Link className="justify-between">
-            Profile
-            <span className="badge">New</span>
-          </Link>
-        </li>
-        <li><Link>Settings</Link></li>
-        <li><Link>Logout</Link></li>
-      </ul>
-    </div>
+          :
+          <button className="btn btn-active btn-secondary"><Link to='/login'>Button</Link></button>
+        }
+
       </div>
     </div>
   );

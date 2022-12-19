@@ -1,24 +1,36 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const {login} = useContext(AuthContext)
-    const hadleLogin = event =>{
-        event.preventDefault()
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password)
+  const { login, signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/'
+  const hadleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
 
-        login(email, password)
-        .then(result => {
-          const user = result.user;
-          console.log(user)
-          form.reset()
-        })
-        .catch(err => console.error(err))
-    }
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        navigate(from, {replace: true})
+      })
+      .catch((err) => console.error(err));
+  };
+  const handleGoogleLogIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col">
@@ -55,10 +67,25 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-primary">Login</button>
+              <button type="submit" className="btn btn-primary">
+                Login
+              </button>
             </div>
-            <p className="text-center">Don't have an account yet?<Link to='/register' className="text-indigo-900">Register</Link></p>
-            <h3 className="text-center font-3xl">Login with <Link className="text-indigo-900 font-semibold">Google</Link></h3>
+            <p className="text-center">
+              Don't have an account yet?
+              <Link to="/register" className="text-indigo-900">
+                Register
+              </Link>
+            </p>
+            <h3 className="text-center font-3xl">
+              Login with{" "}
+              <Link
+                onClick={handleGoogleLogIn}
+                className="text-indigo-900 font-semibold"
+              >
+                Google
+              </Link>
+            </h3>
           </form>
         </div>
       </div>
