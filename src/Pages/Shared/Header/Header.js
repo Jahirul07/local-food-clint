@@ -14,7 +14,7 @@ const Header = () => {
 
     const menuItem = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to=''>Service All</Link></li>
+        <li><Link to='/foods'>Service All</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
     </>
   return (
