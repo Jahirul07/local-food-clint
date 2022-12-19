@@ -1,20 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
-    const handleSignup= event => {
-        event.preventDefault()
-    }
-    return (
-        <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex w-11/12 mx-auto">
-        <div className="text-center lg:text-left w-6/12">
-          <h1 className="text-5xl font-bold">Please Register now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+  const {createUser} = useContext(AuthContext)
+  const handleSignup = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password);
+
+    createUser(email, password)
+    .then(result => {
+      const user = result.user;
+      console.log(user)
+      form.reset()
+    })
+    .catch(err => console.log(err));
+
+  };
+  return (
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content flex-col">
+        <div>
+          <h1 className="text-5xl font-bold mt-6">Please Register Now!</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handleSignup} className="card-body">
@@ -50,21 +61,21 @@ const Signup = () => {
                 placeholder="password"
                 className="input input-bordered"
               />
-              <label className="label">
-                <Link href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </Link>
-              </label>
             </div>
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-primary">Register</button>
+              <button type="submit" className="btn btn-primary">
+                Register
+              </button>
             </div>
-            <p className="text-center">You have an account?<Link to='/login'>Login</Link></p>
+            <p className="text-center">
+              You have an account?<Link to="/login" className="text-indigo-900">Login</Link>
+            </p>
+            <h3 className="text-center font-3xl">SignUp with <Link className="text-indigo-900 font-semibold">Google</Link></h3>
           </form>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Signup;

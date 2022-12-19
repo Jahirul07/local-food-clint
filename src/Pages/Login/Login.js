@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const {login} = useContext(AuthContext)
     const hadleLogin = event =>{
         event.preventDefault()
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password)
+
+        login(email, password)
+        .then(result => {
+          const user = result.user;
+          console.log(user)
+          form.reset()
+        })
+        .catch(err => console.error(err))
     }
   return (
     <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex w-11/12 mx-auto">
-        <div className="text-center lg:text-left w-6/12">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+      <div className="hero-content flex-col">
+        <div>
+          <h1 className="text-5xl font-bold">Login</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={hadleLogin} className="card-body">
@@ -48,7 +57,8 @@ const Login = () => {
             <div className="form-control mt-6">
               <button type="submit" className="btn btn-primary">Login</button>
             </div>
-            <p className="text-center">Don't have an account yet?<Link to='/register'>Register</Link></p>
+            <p className="text-center">Don't have an account yet?<Link to='/register' className="text-indigo-900">Register</Link></p>
+            <h3 className="text-center font-3xl">Login with <Link className="text-indigo-900 font-semibold">Google</Link></h3>
           </form>
         </div>
       </div>
