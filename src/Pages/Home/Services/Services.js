@@ -4,7 +4,7 @@ import FoodsCard from '../../Shared/FoodsCard/FoodsCard';
 const Services = () => {
     const [foods, setFoods] = useState([]);
     useEffect( () => {
-        fetch('localFood.json')
+        fetch('http://localhost:5000/services')
         .then(res => res.json())
         .then(data => setFoods(data))
     }, [])

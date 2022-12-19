@@ -1,6 +1,9 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
 
 const FoodDetails = () => {
+    const food = useLoaderData()
+    console.log(food)
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">

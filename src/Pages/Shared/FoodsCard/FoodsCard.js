@@ -18,7 +18,7 @@ const FoodsCard = ({food}) => {
                         <span >{description}</span>
             }</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary"><Link>Details</Link></button>
+          <button className="btn btn-primary"><Link to={`/foods/${_id}`}>Details</Link></button>
         </div>
       </div>
     </div>
