@@ -26,6 +26,9 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <Signup></Signup>
             },
+            {
+                path: '/foods',
+            }
         ]
     }
 ])
