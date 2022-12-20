@@ -55,7 +55,7 @@ const Header = () => {
       </div>
       <div className="navbar-end">
         {
-          user?.email ?
+          user?.uid ?
           <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
@@ -74,7 +74,7 @@ const Header = () => {
       </ul>
         </div>
           :
-          <button className="btn btn-active btn-secondary"><Link to='/login'>Button</Link></button>
+          <button className="btn btn-active btn-secondary"><Link to='/login'>Login</Link></button>
         }
 
       </div>

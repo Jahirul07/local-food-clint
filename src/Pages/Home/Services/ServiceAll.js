@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useTitle from '../../../hooks/useTitle';
+import NewProduct from '../../NewProduct/NewProduct';
 import FoodsCard from '../../Shared/FoodsCard/FoodsCard';
 
 const ServiceAll = () => {
@@ -21,6 +22,7 @@ const ServiceAll = () => {
                     ></FoodsCard>)
                 }
             </div>
+            <NewProduct></NewProduct>
         </div>
     );
 };

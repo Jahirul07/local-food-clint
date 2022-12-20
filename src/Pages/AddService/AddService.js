@@ -1,6 +1,10 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
 
 const AddService = () => {
+    const notify = () => toast("Added Product!");
     const handleAdd = event => {
         event.preventDefault()
         const form = event.target;
@@ -77,7 +81,8 @@ const AddService = () => {
               required
             ></textarea>
             <div className="flex justify-center mt-5">
-              <input className="btn" type="submit" value="Place Your Review" />
+              <input className="btn" type="submit" onClick={notify} value="Place Your Review" />
+              <ToastContainer></ToastContainer>
             </div>
           </div>
         </form>
