@@ -3,9 +3,9 @@ import Main from "../../Layout/Main";
 import Blog from "../../Pages/Blog/Blog";
 import FoodDetails from "../../Pages/FoodDetails/FoodDetails";
 import Home from "../../Pages/Home/Home";
+import ServiceAll from "../../Pages/Home/Services/ServiceAll";
 import Services from "../../Pages/Home/Services/Services";
 import Login from "../../Pages/Login/Login";
-import ReviewSubmit from "../../Pages/ReviewSubmit/ReviewSubmit";
 import Signup from "../../Pages/Signup/Signup";
 import UserReview from "../../Pages/UserReview/UserReview";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -36,13 +36,13 @@ const router = createBrowserRouter([
                 element: <Services></Services>,
             },
             {
+                path: '/foodsall',
+                element: <ServiceAll></ServiceAll>
+            },
+            {
                 path: '/foods/:id',
                 element: <PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
-            },
-            {
-                path: '/reviewsubmit',
-                element: <ReviewSubmit></ReviewSubmit>,
             },
             {
                 path: '/myreview',

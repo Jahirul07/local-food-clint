@@ -14,7 +14,7 @@ const Header = () => {
 
     const menuItem = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/foods'>Service All</Link></li>
+        <li><Link to='/foodsall'>Service All</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
     </>
   return (
@@ -71,15 +71,6 @@ const Header = () => {
         <li><Link>Settings</Link></li>
         <li onClick={handleSignOut}><Link>Logout</Link></li>
       </ul>
-          {/* <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li>
-              <Link className="justify-between">
-                {user?.email && user.email}
-              </Link>
-            </li>
-            <li><Link>Settings</Link></li>
-            <li><p onClick={handleSignOut}>Logout</p></li>
-          </ul> */}
         </div>
           :
           <button className="btn btn-active btn-secondary"><Link to='/login'>Button</Link></button>

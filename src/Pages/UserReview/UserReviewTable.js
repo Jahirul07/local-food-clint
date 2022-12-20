@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const UserReviewTable = ({ review }) => {
+const UserReviewTable = ({ review, handleDelete }) => {
   const {_id, serviceName, price, email, service, rating } = review;
   const [reviewService, setReviewService] = useState([]);
 
@@ -10,21 +10,9 @@ const UserReviewTable = ({ review }) => {
       .then((data) => setReviewService(data));
   }, [service]);
 
-  const handleDelete = id =>{
-    const proceed = window.confirm('Are you sure to delete this Review?')
-    if(proceed){
-        fetch(`http://localhost:5000/foods/${id}`,{
-            method: 'DELETE'
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-        })
-    }
-  }
 
   return (
-    <div className="overflow-x-auto w-full">
+    <div className="overflow-x-auto w-full my-28">
       <table className="table w-full">
         <tbody>
           <tr>
