@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import FoodsCard from '../../Shared/FoodsCard/FoodsCard';
 
 const Services = () => {
@@ -19,6 +20,9 @@ const Services = () => {
                     food ={food}
                     ></FoodsCard>)
                 }
+            </div>
+            <div className='text-center'>
+            <button className="btn btn-active btn-ghost"><Link to='/foodsall'>See All Service</Link></button>
             </div>
         </div>
     );

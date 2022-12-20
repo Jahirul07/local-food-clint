@@ -68,7 +68,8 @@ const Header = () => {
           {user?.email && user.email}
           </Link>
         </li>
-        <li><Link>Settings</Link></li>
+        <li><Link to='/myreview'>My reviews</Link></li>
+        <li><Link to='/addservice'>Add Service</Link></li>
         <li onClick={handleSignOut}><Link>Logout</Link></li>
       </ul>
         </div>
