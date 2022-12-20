@@ -25,7 +25,7 @@ const FoodDetails = () => {
       message,
       rating,
     };
-    fetch("http://localhost:5000/reviewsubmit", {
+    fetch("https://local-food-server.vercel.app/reviewsubmit", {
       method: "POST",
       headers: {
         'content-type': "application/json",

@@ -21,7 +21,7 @@ const AddService = () => {
             rating
 
         };
-        fetch('http://localhost:5000/product', {
+        fetch('https://local-food-server.vercel.app/product', {
             method: "POST",
             headers: {
                 "content-type": "application/json"

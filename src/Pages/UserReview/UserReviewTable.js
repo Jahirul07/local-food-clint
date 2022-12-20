@@ -5,7 +5,7 @@ const UserReviewTable = ({ review, handleDelete }) => {
   const [reviewService, setReviewService] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/foods/${service}`)
+    fetch(`https://local-food-server.vercel.app/foods/${service}`)
       .then((res) => res.json())
       .then((data) => setReviewService(data));
   }, [service]);

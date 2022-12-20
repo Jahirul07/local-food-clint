@@ -5,7 +5,7 @@ import FoodsCard from '../../Shared/FoodsCard/FoodsCard';
 const Services = () => {
     const [foods, setFoods] = useState([]);
     useEffect( () => {
-        fetch('http://localhost:5000/services')
+        fetch('https://local-food-server.vercel.app/services')
         .then(res => res.json())
         .then(data => setFoods(data))
     }, [])
