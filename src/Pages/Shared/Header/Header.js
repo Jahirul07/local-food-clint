@@ -59,23 +59,27 @@ const Header = () => {
           <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              {
-                user?.email ?
-                user?.photoURL
-                :
                 <img src="https://placeimg.com/80/80/people" alt=""/>
-              }
             </div>
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+        <li>
+          <Link className="justify-between">
+          {user?.email && user.email}
+          </Link>
+        </li>
+        <li><Link>Settings</Link></li>
+        <li onClick={handleSignOut}><Link>Logout</Link></li>
+      </ul>
+          {/* <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li>
               <Link className="justify-between">
                 {user?.email && user.email}
               </Link>
             </li>
             <li><Link>Settings</Link></li>
-            <li><Link onClick={handleSignOut}>Logout</Link></li>
-          </ul>
+            <li><p onClick={handleSignOut}>Logout</p></li>
+          </ul> */}
         </div>
           :
           <button className="btn btn-active btn-secondary"><Link to='/login'>Button</Link></button>
